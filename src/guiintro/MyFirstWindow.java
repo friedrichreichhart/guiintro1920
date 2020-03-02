@@ -12,7 +12,8 @@ import org.eclipse.swt.events.SelectionEvent;
 public class MyFirstWindow {
 
 	protected Shell shell;
-	private Text vornametf;
+	private Text wert;
+	private Text ergebnis;
 
 	/**
 	 * Launch the application.
@@ -50,49 +51,36 @@ public class MyFirstWindow {
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
 		
-		Button btnMyknopf = new Button(shell, SWT.NONE);
-		btnMyknopf.addSelectionListener(new SelectionAdapter() {
+		Button addButton = new Button(shell, SWT.NONE);
+		addButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("MyKopf wurde gedrückt.");
+				int ergebnis = Integer.parseInt(getErgebnis().getText());
+				int wert = Integer.parseInt(getWert().getText());
 				//
-				System.out.println(getVornametf().getText());
+				ergebnis = ergebnis + wert;
+				//
+				getErgebnis().setText(Integer.toString(ergebnis));
+				getWert().setText("");
+				
 			}
 		});
-		btnMyknopf.setBounds(85, 43, 75, 25);
-		btnMyknopf.setText("MyKnopf");
+		addButton.setBounds(130, 88, 75, 25);
+		addButton.setText("+");
 		
-		Label lblVorname = new Label(shell, SWT.NONE);
-		lblVorname.setBounds(129, 102, 55, 15);
-		lblVorname.setText("Vorname");
+		wert = new Text(shell, SWT.BORDER);
+		wert.setBounds(130, 51, 76, 21);
 		
-		vornametf = new Text(shell, SWT.BORDER);
-		vornametf.setBounds(190, 99, 76, 21);
-		
-		Button btnClear = new Button(shell, SWT.NONE);
-		btnClear.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				getVornametf().setText("");
-			}
-		});
-		btnClear.setBounds(166, 43, 75, 25);
-		btnClear.setText("clear");
-		
-		Button btnAdd = new Button(shell, SWT.NONE);
-		btnAdd.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				String text = getVornametf().getText();
-				Integer zahl = Integer.parseInt(text);
-				System.out.println(zahl + 5);
-			}
-		});
-		btnAdd.setBounds(247, 43, 75, 25);
-		btnAdd.setText("add 5");
+		ergebnis = new Text(shell, SWT.BORDER);
+		ergebnis.setText("0");
+		ergebnis.setEditable(false);
+		ergebnis.setBounds(130, 10, 76, 21);
 
 	}
-	public Text getVornametf() {
-		return vornametf;
+	public Text getWert() {
+		return wert;
+	}
+	public Text getErgebnis() {
+		return ergebnis;
 	}
 }
