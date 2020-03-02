@@ -68,6 +68,28 @@ public class MyFirstWindow {
 		
 		vornametf = new Text(shell, SWT.BORDER);
 		vornametf.setBounds(190, 99, 76, 21);
+		
+		Button btnClear = new Button(shell, SWT.NONE);
+		btnClear.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				getVornametf().setText("");
+			}
+		});
+		btnClear.setBounds(166, 43, 75, 25);
+		btnClear.setText("clear");
+		
+		Button btnAdd = new Button(shell, SWT.NONE);
+		btnAdd.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String text = getVornametf().getText();
+				Integer zahl = Integer.parseInt(text);
+				System.out.println(zahl + 5);
+			}
+		});
+		btnAdd.setBounds(247, 43, 75, 25);
+		btnAdd.setText("add 5");
 
 	}
 	public Text getVornametf() {
